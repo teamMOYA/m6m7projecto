@@ -37,6 +37,7 @@ public class DaoServeisHIB implements DaoServeis {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Serveis> getServeis() throws HibernateException {
 		Session session = sessionFactory.openSession();

@@ -36,6 +36,7 @@ public class DaoClientsHIB implements DaoClients {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Clients> getClients() throws HibernateException{
 		Session session = sessionFactory.openSession();

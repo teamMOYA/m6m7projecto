@@ -35,7 +35,8 @@ public class DaoAsssistenciesHIB implements DaoAsssistencies {
 
 	}
 
-	
+
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Assistencies> getAssistencies() throws HibernateException{
 		Session session = sessionFactory.openSession();
