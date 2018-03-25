@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.input.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="720.0" prefWidth="900.0" stylesheets="@../../../UF5/src/m3/uf5/preguntes/examen/pt4/application.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MenuController">
+  <children>
+    <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+      <menus>
+            <Menu mnemonicParsing="false" text="Visitas">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Opciones">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+              </items>
+            </Menu>
+        <Menu mnemonicParsing="true" text="_Ajuda">
+          <items>
+                  <MenuItem mnemonicParsing="false" text="Registre d'errors"><accelerator>
+                        <KeyCodeCombination alt="UP" code="F1" control="UP" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+            <MenuItem mnemonicParsing="false" text="About ..." />
+
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+      <BorderPane fx:id="main">
+
+	<top>
+		<AnchorPane styleClass="topregion" BorderPane.alignment="CENTER">
+			<children>
+				<ImageView fitHeight="50.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+					<image>
+						<Image url="@../../../../../../opt/JavaFXSceneBuilder2.0/app/fxml-128.png" />
+					</image>
+				</ImageView>
+				<Label fx:id="lb_nom_menu" layoutX="21.0" layoutY="18.0" prefHeight="80.0" prefWidth="518.0" styleClass="title" text="TEXTO INICIO" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+			</children>
+		</AnchorPane>
+	</top>
+	<center>
+		<AnchorPane fx:id="mainVista" styleClass="centerregion" BorderPane.alignment="CENTER">
+               <children>
+               </children></AnchorPane>
+	</center>
+	</BorderPane>
+  </children>
+</VBox>
