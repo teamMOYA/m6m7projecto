@@ -3,7 +3,6 @@ package main;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import dao.DAOManager;
 import dao.DaoAsssistencies;
@@ -18,12 +17,13 @@ import modeloH.Usuaris;
 
 public class main {
 
+	@SuppressWarnings("unused")
 	public static void main(String[] args) throws SQLException, ParseException {
 		DaoUsuaris daoUser = DAOManager.getDaoUsuaris();
 		DaoClients daocli = DAOManager.getDaoClients();
 		DaoAsssistencies daoassist = DAOManager.getDaoAsssistencies();
 		DaoServeis daoserv = DAOManager.getDaoServeis();
-		/*
+
 		//usuario con perfil
 		Perfils perfil = new Perfils(10, "programer");
 		Usuaris usuario = new Usuaris("admin", perfil, "admin", "administrador", "admin", "mail@mail.com",20,"programer");
@@ -52,9 +52,9 @@ public class main {
 
 		//test borrado cascade/ borramos cliente
 		daocli.delClients(1);
-		*/
 
-		//update cliente 
+
+		//update cliente
 		Clients client4 = new Clients(2, "david", "moya", "655929229", "mail@sad.com");
 
 		daocli.updateClients(client4);
