@@ -49,8 +49,6 @@ public class LoginController {
 					MenuController menuController = loader.getController();
 					menuController.setLogedUser(LogedUser);
 
-
-
 					stage.show();
 
 					((Node)(e.getSource())).getScene().getWindow().hide();

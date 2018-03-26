@@ -56,12 +56,12 @@ public class MenuController {
 
 	//get/set
 	public void setLogedUser(Usuaris usuario) {
-		this.LogedUser = usuario;
-		this.changeTittle("Bienvenido " + this.LogedUser.getIdUsuari());
+		MenuController.LogedUser = usuario;
+		this.changeTittle("Bienvenido " + MenuController.LogedUser.getIdUsuari());
 
 	}
 	public Usuaris getLogedUser() {
-		return this.LogedUser;
+		return MenuController.LogedUser;
 	}
 
 	//funciones para menu bar
@@ -73,6 +73,14 @@ public class MenuController {
 	public void menuGetVisits(){
 		//TODO
 		this.changeTittle("Ver Visitas");
+		ControllerGet.opcion = 1;
+		try {
+			LoadView(FXMLLoader.load(getClass().getResource("MenuVisitas.fxml")));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 	public void menuNewClient(){
 		//TODO
@@ -81,6 +89,7 @@ public class MenuController {
 	public void menuGetClients(){
 		//TODO
 		this.changeTittle("Ver Clientes");
+		ControllerGet.opcion = 2;
 	}
 	public void menuNewUser(){
 		//TODO
@@ -89,6 +98,7 @@ public class MenuController {
 	public void menuGetUser(){
 		//TODO
 		this.changeTittle("Ver Usuarios");
+		ControllerGet.opcion = 3;
 	}
 	public void menuNewService(){
 		//TODO
@@ -97,6 +107,7 @@ public class MenuController {
 	public void menuGetServices(){
 		//TODO
 		this.changeTittle("Ver Servicios");
+		ControllerGet.opcion = 4;
 	}
 	public void menuGetPerfil(){
 		//TODO
