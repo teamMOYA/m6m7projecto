@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class GestorConnexions {
-	private static String url = "jdbc:mysql://192.168.3.145/bdclinica";
+	private static String url = "jdbc:mysql://localhost/bdclinica";
 	private static String user = "root" ;
 	private static String pwd = "root";
 	private static Connection connexio = null;

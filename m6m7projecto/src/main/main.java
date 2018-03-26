@@ -25,9 +25,10 @@ public class main {
 		DaoServeis daoserv = DAOManager.getDaoServeis();
 
 		//usuario con perfil
-		Perfils perfil = new Perfils(10, "programer");
+		Perfils perfil = new Perfils(1, "");
 		Usuaris usuario = new Usuaris("admin", perfil, "admin", "administrador", "admin", "mail@mail.com",20,"programer");
-		//daoUser.addUsuaris(usuario);
+		daoUser.addUsuaris(usuario);
+		/*//
 		//get usuario
 		System.out.println(daoUser.getUsuarisById("admin"));
 
@@ -58,7 +59,7 @@ public class main {
 		Clients client4 = new Clients(2, "david", "moya", "655929229", "mail@sad.com");
 
 		daocli.updateClients(client4);
-
+		*/
 
 	}
 

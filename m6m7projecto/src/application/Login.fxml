@@ -13,8 +13,8 @@
          <children>
             <Label text="Usuario:" />
             <Label text="Password:" GridPane.rowIndex="2" />
-            <PasswordField fx:id="tb_pass" GridPane.rowIndex="3" />
             <TextField fx:id="tb_user" GridPane.rowIndex="1" />
+            <PasswordField fx:id="tb_pass" GridPane.rowIndex="3" />
             <Button fx:id="bt_login" mnemonicParsing="false" prefHeight="25.0" prefWidth="222.0" text="Login" GridPane.rowIndex="4" />
          </children>
          <columnConstraints>

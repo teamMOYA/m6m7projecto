@@ -55,13 +55,13 @@ public class LoginController {
 
 					((Node)(e.getSource())).getScene().getWindow().hide();
 				}else{
-					ControlErrores.mostrarError("Error Login", "usuario o contraseÃ±a incorrecto", "Vuelve a introducir usuario y contraseÃ±a");
+					ControlErrores.showInformation("Error Login", "usuario o contraseña incorrecto", "Vuelve a introducir usuario y contraseña");
 				}
 			} catch (SQLException e1) {
-				ControlErrores.mostrarError("Error BD", "Servidor inaccesible", "No hay conexion al servidor");
+				ControlErrores.showInformation("Error BD", "Servidor inaccesible", "No hay conexion al servidor");
 			}catch (NullPointerException e2) {
 				e2.printStackTrace();
-				ControlErrores.mostrarError("Error null", "ERROR", e2.getMessage());
+				ControlErrores.showInformation("Error null", "ERROR", e2.getMessage());
 
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block

@@ -1,6 +1,9 @@
 package application;
 
+import java.io.IOException;
+
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
 import javafx.scene.layout.AnchorPane;
@@ -15,18 +18,22 @@ public class MenuController {
 	@FXML private AnchorPane vistaCentral;
 	@FXML private Label lb_nom_menu;
 
-	private Usuaris LogedUser;
-
+	private static Usuaris LogedUser = null;
 
 	@FXML
-	public void initialize() {
+	public void initialize()  {
 		System.out.println("menucontroler initialize");
-
+			//TODO ARREGLAR FALLO CON CONTROLER LOGIN
+		try {
+			LoadView(FXMLLoader.load(getClass().getResource("MenuBienvenida.fxml")));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 
 	}
-
-	public void carregarVista(Pane vista) {
+	//funcion para cambiar zona central pantalla
+	public void LoadView(Pane vista) {
 		if (vista == null) return;
 
 		this.mainVista.getChildren().clear();
@@ -42,9 +49,74 @@ public class MenuController {
 		//this.paneVista.setVisible(true);
 	}
 
+	//funcion para cambiar nombre de cabecera
+	private void changeTittle(String titulo){
+		lb_nom_menu.setText(titulo);
+	}
+
+	//get/set
 	public void setLogedUser(Usuaris usuario) {
 		this.LogedUser = usuario;
-		lb_nom_menu.setText("Bienvenido " + this.LogedUser.getIdUsuari());
+		this.changeTittle("Bienvenido " + this.LogedUser.getIdUsuari());
+
 	}
+	public Usuaris getLogedUser() {
+		return this.LogedUser;
+	}
+
+	//funciones para menu bar
+	public void menuNewVisit(){
+		//TODO
+		this.changeTittle("Nueva Visita");
+
+	}
+	public void menuGetVisits(){
+		//TODO
+		this.changeTittle("Ver Visitas");
+	}
+	public void menuNewClient(){
+		//TODO
+		this.changeTittle("Nuevo Cliente");
+	}
+	public void menuGetClients(){
+		//TODO
+		this.changeTittle("Ver Clientes");
+	}
+	public void menuNewUser(){
+		//TODO
+		this.changeTittle("Nuevo Usuario");
+	}
+	public void menuGetUser(){
+		//TODO
+		this.changeTittle("Ver Usuarios");
+	}
+	public void menuNewService(){
+		//TODO
+		this.changeTittle("Nuevo Servicio");
+	}
+	public void menuGetServices(){
+		//TODO
+		this.changeTittle("Ver Servicios");
+	}
+	public void menuGetPerfil(){
+		//TODO
+		this.changeTittle("Ver Perfil");
+	}
+
+	public void menuAbout(){
+		//TODO
+		this.changeTittle("Informacion");
+
+	}
+
+
+
+
+
+
+
+
+
+
 
 }
