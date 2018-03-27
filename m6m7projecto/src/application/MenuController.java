@@ -108,6 +108,12 @@ public class MenuController {
 		//TODO
 		this.changeTittle("Ver Servicios");
 		ControllerGet.opcion = 4;
+		try {
+			LoadView(FXMLLoader.load(getClass().getResource("MenuVisitas.fxml")));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	public void menuGetPerfil(){
 		//TODO

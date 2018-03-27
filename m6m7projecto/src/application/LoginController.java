@@ -45,6 +45,7 @@ public class LoginController {
 					FXMLLoader loader = new FXMLLoader(getClass().getResource("Plantilla.fxml"));
 					Parent root = loader.load();
 					stage.setScene(new Scene(root, 900, 600));
+					stage.setResizable(false);
 
 					MenuController menuController = loader.getController();
 					menuController.setLogedUser(LogedUser);
