@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane fx:id="mainVista" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControllerGet">
+<AnchorPane fx:id="mainVista" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ControllerInteract">
    <children>
       <GridPane fx:id="grid" layoutX="317.0" layoutY="166.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -20,11 +20,12 @@
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Button fx:id="bt_create" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" text="Button" />
+                  <Button fx:id="bt_create" mnemonicParsing="false" onAction="#createOnClick" prefHeight="100.0" prefWidth="200.0" text="Button" />
                   <Button fx:id="bt_modify" mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" text="Button" />
                   <Button fx:id="bt_delete" mnemonicParsing="false" onAction="#deleteOnclick" prefHeight="100.0" prefWidth="200.0" text="Button" />
                </children>
             </VBox>
+            <VBox fx:id="vbox2" prefHeight="200.0" prefWidth="252.0" GridPane.columnIndex="1" />
          </children>
       </GridPane>
    </children>

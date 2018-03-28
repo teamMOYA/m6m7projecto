@@ -2,10 +2,13 @@ package application;
 
 import java.io.IOException;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.ProgressIndicator;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
@@ -22,13 +25,13 @@ public class MenuController {
 
 	@FXML
 	public void initialize()  {
-		System.out.println("menucontroler initialize");
+		/*System.out.println("menucontroler initialize");
 			//TODO ARREGLAR FALLO CON CONTROLER LOGIN
 		try {
 			LoadView(FXMLLoader.load(getClass().getResource("MenuBienvenida.fxml")));
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
+		}*/
 
 
 	}
@@ -73,13 +76,8 @@ public class MenuController {
 	public void menuGetVisits(){
 		//TODO
 		this.changeTittle("Ver Visitas");
-		ControllerGet.opcion = 1;
-		try {
-			LoadView(FXMLLoader.load(getClass().getResource("MenuVisitas.fxml")));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ControllerInteract.opcion = 1;
+		cargarInteraction();
 
 	}
 	public void menuNewClient(){
@@ -89,7 +87,7 @@ public class MenuController {
 	public void menuGetClients(){
 		//TODO
 		this.changeTittle("Ver Clientes");
-		ControllerGet.opcion = 2;
+		ControllerInteract.opcion = 2;
 	}
 	public void menuNewUser(){
 		//TODO
@@ -98,7 +96,7 @@ public class MenuController {
 	public void menuGetUser(){
 		//TODO
 		this.changeTittle("Ver Usuarios");
-		ControllerGet.opcion = 3;
+		ControllerInteract.opcion = 3;
 	}
 	public void menuNewService(){
 		//TODO
@@ -107,13 +105,9 @@ public class MenuController {
 	public void menuGetServices(){
 		//TODO
 		this.changeTittle("Ver Servicios");
-		ControllerGet.opcion = 4;
-		try {
-			LoadView(FXMLLoader.load(getClass().getResource("MenuVisitas.fxml")));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ControllerInteract.opcion = 4;
+		cargarInteraction();
+
 	}
 	public void menuGetPerfil(){
 		//TODO
@@ -124,6 +118,16 @@ public class MenuController {
 		//TODO
 		this.changeTittle("Informacion");
 
+	}
+
+	private void cargarInteraction(){
+
+		try {
+			LoadView(FXMLLoader.load(getClass().getResource("MenuInteraction.fxml")));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 
