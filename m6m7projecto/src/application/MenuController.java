@@ -22,6 +22,14 @@ public class MenuController {
 
 	@FXML
 	public void initialize()  {
+		System.out.println("menucontroler initialize");
+			//TODO ARREGLAR FALLO CON CONTROLER LOGIN
+		try {
+			LoadView(FXMLLoader.load(getClass().getResource("MenuBienvenida.fxml")));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 
 	}
 	//funcion para cambiar zona central pantalla
@@ -58,56 +66,48 @@ public class MenuController {
 
 	//funciones para menu bar
 	public void menuNewVisit(){
-		this.changeTittle("Visitas");
-		ControllerInteract.opcion = 1;
-		ControllerInteract.mode = 1;
-		cargarMenuInteraction();
+		//TODO
+		this.changeTittle("Nueva Visita");
 
 	}
 	public void menuGetVisits(){
-		this.changeTittle("Visitas");
-		ControllerInteract.opcion = 1;
-		ControllerInteract.mode = 0;
-		cargarMenuInteraction();
+		//TODO
+		this.changeTittle("Ver Visitas");
+		ControllerGet.opcion = 1;
+		try {
+			LoadView(FXMLLoader.load(getClass().getResource("MenuVisitas.fxml")));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 	public void menuNewClient(){
-		this.changeTittle("Clientes");
-		ControllerInteract.opcion = 2;
-		ControllerInteract.mode = 1;
-		cargarMenuInteraction();
+		//TODO
+		this.changeTittle("Nuevo Cliente");
 	}
 	public void menuGetClients(){
-		this.changeTittle("Clientes");
-		ControllerInteract.opcion = 2;
-		ControllerInteract.mode = 0;
-		cargarMenuInteraction();
-
+		//TODO
+		this.changeTittle("Ver Clientes");
+		ControllerGet.opcion = 2;
 	}
 	public void menuNewUser(){
-		this.changeTittle("Usuarios");
-		ControllerInteract.opcion = 3;
-		ControllerInteract.mode = 1;
-		cargarMenuInteraction();
+		//TODO
+		this.changeTittle("Nuevo Usuario");
 	}
 	public void menuGetUser(){
-		this.changeTittle("Usuarios");
-		ControllerInteract.opcion = 3;
-		ControllerInteract.mode = 0;
-		cargarMenuInteraction();
+		//TODO
+		this.changeTittle("Ver Usuarios");
+		ControllerGet.opcion = 3;
 	}
 	public void menuNewService(){
-		this.changeTittle("Servicios");
-		ControllerInteract.opcion = 4;
-		ControllerInteract.mode = 1;
-		cargarMenuInteraction();
+		//TODO
+		this.changeTittle("Nuevo Servicio");
 	}
 	public void menuGetServices(){
-		this.changeTittle("Servicios");
-		ControllerInteract.opcion = 4;
-		ControllerInteract.mode = 0;
-		cargarMenuInteraction();
-
+		//TODO
+		this.changeTittle("Ver Servicios");
+		ControllerGet.opcion = 4;
 	}
 	public void menuGetPerfil(){
 		//TODO
@@ -118,16 +118,6 @@ public class MenuController {
 		//TODO
 		this.changeTittle("Informacion");
 
-	}
-
-	private void cargarMenuInteraction(){
-
-		try {
-			LoadView(FXMLLoader.load(getClass().getResource("MenuInteraction.fxml")));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 

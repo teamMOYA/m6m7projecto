@@ -45,7 +45,6 @@ public class LoginController {
 					FXMLLoader loader = new FXMLLoader(getClass().getResource("Plantilla.fxml"));
 					Parent root = loader.load();
 					stage.setScene(new Scene(root, 900, 600));
-					stage.setResizable(false);
 
 					MenuController menuController = loader.getController();
 					menuController.setLogedUser(LogedUser);
@@ -63,7 +62,7 @@ public class LoginController {
 				ControlErrores.showInformation("Error null", "ERROR", e2.getMessage());
 
 			} catch (IOException e1) {
-				System.out.println("error login");
+				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		});

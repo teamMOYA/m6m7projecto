@@ -3,7 +3,6 @@ package main;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.List;
 
 import dao.DAOManager;
 import dao.DaoAsssistencies;
@@ -25,17 +24,11 @@ public class main {
 		DaoAsssistencies daoassist = DAOManager.getDaoAsssistencies();
 		DaoServeis daoserv = DAOManager.getDaoServeis();
 
-
-		List<Assistencies> list = daoassist.getAssistencies();
-		for (Assistencies assistencies : list) {
-			System.out.println(assistencies.toString());
-		}
-
 		//usuario con perfil
-		//Perfils perfil = new Perfils(1, "");
-		//Usuaris usuario = new Usuaris("admin", perfil, "admin", "administrador", "admin", "mail@mail.com",20,"programer");
-		//daoUser.addUsuaris(usuario);
-		/*
+		Perfils perfil = new Perfils(1, "");
+		Usuaris usuario = new Usuaris("admin", perfil, "admin", "administrador", "admin", "mail@mail.com",20,"programer");
+		daoUser.addUsuaris(usuario);
+		/*//
 		//get usuario
 		System.out.println(daoUser.getUsuarisById("admin"));
 
