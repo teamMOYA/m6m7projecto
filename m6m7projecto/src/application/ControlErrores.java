@@ -19,7 +19,6 @@ public class ControlErrores {
 		Optional<ButtonType> result = alert.showAndWait();
 		if (result.get() == ButtonType.OK){
 		    // ... user chose OK
-			System.out.println("okbt");
 			return true;
 		} else {
 		    // ... user chose CANCEL or closed the dialog

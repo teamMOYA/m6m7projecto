@@ -63,7 +63,7 @@ public class LoginController {
 				ControlErrores.showInformation("Error null", "ERROR", e2.getMessage());
 
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
+				System.out.println("error login");
 				e1.printStackTrace();
 			}
 		});
