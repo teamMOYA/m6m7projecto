@@ -21,61 +21,51 @@ import modeloH.Usuaris;
 public class LoginController {
 	DaoUsuaris daouser;
 	@FXML private TextField tb_user;
-
 	@FXML private Button bt_login;
-
 	@FXML private PasswordField tb_pass;
-
 	private Usuaris LogedUser;
 
 
 	@FXML
 	public void initialize() {
-
-		System.out.println("logincontroler initialize");
-
+		//boton login
 		bt_login.setOnAction((ActionEvent e) -> {
-			System.out.println("btlogin");
 			try {
+				//check login
 				if (checkLogin()){
-					//cambiar pantalla
-					//FXMLLoader fxmlLoader = new FXMLLoader()
 
+					//cambiar pantalla
 					Stage stage = new Stage();
-					FXMLLoader loader = new FXMLLoader(getClass().getResource("Plantilla.fxml"));
+					FXMLLoader loader = new FXMLLoader(getClass().getResource("Principal.fxml"));
 					Parent root = loader.load();
 					stage.setScene(new Scene(root, 900, 600));
 
+					//pasamos el usuario con que ha hecho login
 					MenuController menuController = loader.getController();
 					menuController.setLogedUser(LogedUser);
 
+					stage.setResizable(false);
 					stage.show();
-
+					//esconder pantalla login
 					((Node)(e.getSource())).getScene().getWindow().hide();
 				}else{
 					ControlErrores.showInformation("Error Login", "usuario o contraseña incorrecto", "Vuelve a introducir usuario y contraseña");
 				}
 			} catch (SQLException e1) {
-				ControlErrores.showInformation("Error BD", "Servidor inaccesible", "No hay conexion al servidor");
-			}catch (NullPointerException e2) {
-				e2.printStackTrace();
-				ControlErrores.showInformation("Error null", "ERROR", e2.getMessage());
-
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
+				ControlErrores.showInformation("Error BD", "Servidor inaccesible", "No hay conexion al servidor");
+			} catch (IOException e1) {
+				e1.printStackTrace();
+				ControlErrores.showErrorPantalla();
 			}
 		});
 	}
 
 	//comprueba si el login es correcto
-	private boolean checkLogin() throws SQLException, NullPointerException{
-
+	private boolean checkLogin() throws SQLException{
 		daouser = DAOManager.getDaoUsuaris();
 
 		Usuaris user = daouser.getUsuarisById(tb_user.getText());
-
-		System.out.println(tb_pass.getText());
 		if (user != null && user.getPassword().equals(tb_pass.getText())){
 			//login correcto
 			LogedUser = user;

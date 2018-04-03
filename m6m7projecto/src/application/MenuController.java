@@ -24,21 +24,18 @@ public class MenuController {
 	public void initialize()  {
 
 	}
+
 	//funcion para cambiar zona central pantalla
 	public void LoadView(Pane vista) {
 		if (vista == null) return;
 
 		this.mainVista.getChildren().clear();
-
-		//paneArrel.setPrefHeight(paneArrel.getHeight() - 80.0);
-
 		this.mainVista.getChildren().add(vista);
 
 		AnchorPane.setTopAnchor(vista,0.0);
 		AnchorPane.setBottomAnchor(vista,0.0);
 		AnchorPane.setLeftAnchor(vista, 0.0);
 		AnchorPane.setRightAnchor(vista, 0.0);
-		//this.paneVista.setVisible(true);
 	}
 
 	//funcion para cambiar nombre de cabecera
@@ -48,14 +45,14 @@ public class MenuController {
 
 	//get/set
 	public void setLogedUser(Usuaris usuario) {
-		MenuController.LogedUser = usuario;
-		this.changeTittle("Bienvenido " + MenuController.LogedUser.getIdUsuari());
+		LogedUser = usuario;
+		changeTittle("Bienvenido " + LogedUser.getIdUsuari());
 
 	}
 	public Usuaris getLogedUser() {
 		return MenuController.LogedUser;
 	}
-
+	//########################################################################
 	//funciones para menu bar
 	public void menuNewVisit(){
 		this.changeTittle("Visitas");
@@ -82,7 +79,6 @@ public class MenuController {
 		ControllerInteract.opcion = 2;
 		ControllerInteract.mode = 0;
 		cargarMenuInteraction();
-
 	}
 	public void menuNewUser(){
 		this.changeTittle("Usuarios");
@@ -107,25 +103,24 @@ public class MenuController {
 		ControllerInteract.opcion = 4;
 		ControllerInteract.mode = 0;
 		cargarMenuInteraction();
-
 	}
 	public void menuGetPerfil(){
-		//TODO
 		this.changeTittle("Ver Perfil");
+		ControlErrores.showErrorPantalla();
+		//TODO
 	}
 
 	public void menuAbout(){
-		//TODO
 		this.changeTittle("Informacion");
-
+		ControlErrores.showInformation("Informacion", "Informacion creador", "Hecho por DAVID MOYA \n informacion de contacto:\n \t tlf:655929229 \n \t email:email@email.com");
+		//TODO
 	}
 
 	private void cargarMenuInteraction(){
-
 		try {
 			LoadView(FXMLLoader.load(getClass().getResource("MenuInteraction.fxml")));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			ControlErrores.showErrorPantalla();
 			e.printStackTrace();
 		}
 	}

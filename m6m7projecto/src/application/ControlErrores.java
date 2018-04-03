@@ -8,7 +8,9 @@ import javafx.scene.control.ButtonType;
 
 public class ControlErrores {
 
-
+	public static void showErrorPantalla(){
+		showError("ERROR", "Error critico", "Error al cargar pantalla");
+	}
 
 	public static boolean showConfirmation(String titulo, String header, String body){
 		Alert alert = new Alert(AlertType.CONFIRMATION);
