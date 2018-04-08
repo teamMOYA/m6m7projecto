@@ -82,18 +82,17 @@ public class DaoUsuarisJDBC implements DaoUsuaris {
 
 	@Override
 	public void updateUsuaris(Usuaris usuaris) throws SQLException {
-		String sql = "update usuaris set password=?,nom=?,cognom=?,correu=?,perfil=?,numcolegiat=?,especialitat=? where idUsuari=?";
+		String sql = "update usuaris set password=?,nom=?,cognoms=?,correu=?,perfil=?,numcolegiat=?,especialitat=? where idUsuari=?";
 
 		PreparedStatement sentencia = conexion.prepareStatement(sql);
 		sentencia.setString(1, usuaris.getPassword());
 		sentencia.setString(2, usuaris.getNom());
 		sentencia.setString(3, usuaris.getCognoms());
-		sentencia.setString(4, usuaris.getCognoms());
+		sentencia.setString(4, usuaris.getCorreu());
 		sentencia.setInt(5, usuaris.getPerfils().getCodi());
 		sentencia.setInt(6, usuaris.getNumcolegiat());
 		sentencia.setString(7, usuaris.getEspecialitat());
 		sentencia.setString(8, usuaris.getIdUsuari());
-
 
 		sentencia.executeUpdate();
 
@@ -137,9 +136,19 @@ public class DaoUsuarisJDBC implements DaoUsuaris {
 	}
 
 	@Override
-	public List<Perfils> getPerfils() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Perfils> getPerfils() throws SQLException {
+		conexion = GestorConnexions.obtenirConnexio();
+
+		String sql = "SELECT codi FROM perfils";
+		PreparedStatement sentencia = conexion.prepareStatement(sql);
+
+		ResultSet resultat = sentencia.executeQuery();
+
+		List<Perfils> llistaUsuaris = new LinkedList<>();
+		while (resultat.next()){
+			llistaUsuaris.add(this.getPerfilsById(resultat.getInt(1)));
+		}
+		return llistaUsuaris;
 	}
 
 	@Override

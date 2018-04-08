@@ -9,7 +9,12 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+
+import javax.persistence.PersistenceException;
+
 import org.hibernate.HibernateException;
+import org.hibernate.exception.ConstraintViolationException;
+
 import dao.DAOManager;
 import dao.DaoAsssistencies;
 import dao.DaoClients;
@@ -37,6 +42,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import modeloH.Assistencies;
 import modeloH.Clients;
+import modeloH.Perfils;
 import modeloH.Serveis;
 import modeloH.Usuaris;
 
@@ -47,6 +53,7 @@ public class ControllerInteract {
 	@FXML private Button bt_modify;
 	@FXML private Button bt_delete;
 	@FXML private GridPane grid;
+	@FXML private VBox vbox1;
 	@FXML private VBox vbox2;
 	@FXML private GridPane gridData;
 
@@ -82,6 +89,7 @@ public class ControllerInteract {
 			//gridData.setVisible(true);
 			values(null);
 		}
+
 		switch (opcion) {
 		//mostrar tabla con datos
 		case 1:
@@ -89,16 +97,33 @@ public class ControllerInteract {
 			break;
 		case 2:
 			getClients();
+			// ocultar opciones dependiendo del perfil de usuario
+			if(!"ADMINISTRADOR".equals(MenuController.getLogedUser().getPerfils().getDescripcio())|| "GESTIÓ".equals(MenuController.getLogedUser().getPerfils().getDescripcio())){
+				vbox2.getChildren().remove(gridData);
+				grid.getChildren().remove(vbox1);
+				//TODO arreglar quitar primera columna
+				grid.getColumnConstraints().get(0).setPercentWidth(0.1);
+			}
 			break;
 		case 3:
 			getUsers();
+
 			break;
 		case 4:
 			getServices();
+			// ocultar opciones dependiendo del perfil de usuario
+			if(!"ADMINISTRADOR".equals(MenuController.getLogedUser().getPerfils().getDescripcio())){
+				vbox2.getChildren().remove(gridData);
+				grid.getChildren().remove(vbox1);
+				//TODO arreglar quitar primera columna
+				grid.getColumnConstraints().get(0).setPercentWidth(0.1);
+			}
 			break;
 		default:
 			break;
 		}
+
+
 	}
 	//###############################################################################################
 	//botones
@@ -608,7 +633,6 @@ public class ControllerInteract {
 				gridData.getColumnConstraints().addAll(col1,col2,col3,col4);
 			}
 
-
 			// guardat datos
 			bt_Save.setOnAction(new EventHandler<ActionEvent>() {
 				@SuppressWarnings("unchecked")
@@ -636,6 +660,8 @@ public class ControllerInteract {
 
 						daoAsist.updateAssistencia(obj);
 					}
+					tableData.refresh();
+
 				}
 			});
 
@@ -717,7 +743,9 @@ public class ControllerInteract {
 						obj.setCorreu(email);
 						daoCli.updateClients(obj);
 					}
+					tableData.refresh();
 				}
+
 			});
 
 		}catch (HibernateException e) {
@@ -729,14 +757,134 @@ public class ControllerInteract {
 
 	}
 
-	private void valueUsers(Usuaris obj) {
-		// TODO Auto-generated method stub
+	private void valueUsers(Usuaris obj) throws SQLException {
+		DaoUsuaris daoUser = DAOManager.getDaoUsuaris();
+
+
+		//labels
+		Label l_id = new Label("Id Usuario");
+		Label l_pass = new Label("Contraseña");
+		Label l_name = new Label("Nombre");
+		Label l_surname = new Label("Apellido");
+		Label l_email = new Label("Email");
+		Label l_perf = new Label("Perfil");
+		Label l_col = new Label("Numero Colegiado");
+		Label l_esp = new Label("Especialidad");
+
+		//data
+		List<Perfils> listPerfObj = daoUser.getPerfils();
+		List<String> listPerfValues = new LinkedList<>();
+
+		for (Perfils perfil : listPerfObj) {
+			listPerfValues.add(perfil.getCodi() + " - " + perfil.getDescripcio());
+		}
+
+		ChoiceBox<String> tf_perf = new ChoiceBox<>(FXCollections.observableList(listPerfValues));
+
+		TextField tf_id;
+		TextField tf_pass;
+		TextField tf_name;
+		TextField tf_surname;
+		TextField tf_email;
+		TextField tf_col;
+		TextField tf_esp;
+		if (mode == 1){
+			tf_id = new TextField();
+			tf_pass = new TextField();
+			tf_name = new TextField();
+			tf_surname = new TextField();
+			tf_email = new TextField();
+			//tf_perf;
+			tf_col = new TextField();
+			tf_esp = new TextField();
+		}else{
+			tf_id = new TextField(obj.getIdUsuari());
+			tf_id.setEditable(false);
+			tf_pass = new TextField(obj.getPassword());
+			tf_name = new TextField(obj.getNom());
+			tf_surname = new TextField(obj.getCognoms());
+			tf_email = new TextField(obj.getCorreu());
+
+			int	i=0;
+			while (obj.getPerfils().getCodi()!=listPerfObj.get(i). getCodi()){
+				i++;
+			}
+			tf_perf.getSelectionModel().select(i);
+			tf_col = new TextField(String.valueOf(obj.getNumcolegiat()));
+			tf_esp = new TextField(obj.getEspecialitat());
+		}
+		//save
+		Button bt_Save = new Button("Guardar");
+
+		//grid
+		gridData.getChildren().clear();
+
+		gridData.add(l_id, 0, 0);
+		gridData.add(l_pass, 0, 1);
+		gridData.add(l_name, 0, 2);
+		gridData.add(l_surname, 0, 3);
+		gridData.add(l_email, 2, 0);
+		gridData.add(l_perf, 2, 1);
+		gridData.add(l_col, 2, 2);
+		gridData.add(l_esp, 2, 3);
+
+		gridData.add(tf_id, 1, 0);
+		gridData.add(tf_pass, 1, 1);
+		gridData.add(tf_name, 1, 2);
+		gridData.add(tf_surname, 1, 3);
+		gridData.add(tf_email, 4, 0);
+		gridData.add(tf_perf, 4, 1);
+		gridData.add(tf_col, 4, 2);
+		gridData.add(tf_esp, 4, 3);
+
+		gridData.add(bt_Save, 0, 5);
+
+		bt_Save.setOnAction(new EventHandler<ActionEvent>() {
+			@Override public void handle(ActionEvent e) {
+				try {
+					Perfils perfil = listPerfObj.get(tf_perf.getSelectionModel().getSelectedIndex());
+
+					String id = tf_id.getText();
+					String pass = tf_pass.getText();
+					String name = tf_name.getText();
+					String surname = tf_surname.getText();
+					String email = tf_email.getText();
+					int col = Integer.valueOf(tf_col.getText());
+					String esp = tf_esp.getText();
+
+					if (mode==1){
+						Usuaris newUser = new Usuaris(id, perfil, pass, name, surname, email, col, esp);
+						daoUser.addUsuaris(newUser);
+						listaActual.add(newUser);
+					}else{
+						obj.setPerfils(perfil);
+						obj.setPassword(pass);
+						obj.setNom(name);
+						obj.setCognoms(surname);
+						obj.setCorreu(email);
+						obj.setNumcolegiat(col);
+						obj.setEspecialitat(esp);
+
+						daoUser.updateUsuaris(obj);
+					}
+					tableData.refresh();
+				} catch (NumberFormatException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+
+		});
 
 
 	}
 
 	@SuppressWarnings("all")
 	private void valuesService(Serveis serv){
+
 		DaoServeis daoServ = DAOManager.getDaoServeis();
 
 		//labels
@@ -761,18 +909,22 @@ public class ControllerInteract {
 		//grid
 		gridData.getChildren().clear();
 
+
+
 		gridData.add(l_id, 0, 0);
 		gridData.add(l_desc, 0, 1);
 		gridData.add(tf_id, 1, 0);
 		gridData.add(tf_desc, 1, 1);
 		gridData.add(bt_Save, 0, 2);
 
-		vbox2.prefWidthProperty().bind(grid.widthProperty());
+		//vbox2.prefWidthProperty().bind(grid.widthProperty());
 		// comprobar datos
-		try {
-			// guardat datos
-			bt_Save.setOnAction(new EventHandler<ActionEvent>() {
-				@Override public void handle(ActionEvent e) {
+
+
+		// guardat datos
+		bt_Save.setOnAction(new EventHandler<ActionEvent>() {
+			@Override public void handle(ActionEvent e) {
+				try {
 					int cod = Integer.parseInt(tf_id.getText());
 					String descripcio = tf_desc.getText();
 					if (mode==1){
@@ -783,23 +935,29 @@ public class ControllerInteract {
 						serv.setDescripcio(descripcio);
 						daoServ.updateServeis(serv);
 					}
-				}
-			});
+					tableData.refresh();
 
-		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}catch (HibernateException e) {
-			// TODO: handle exception
-			ControlErrores.showError("Añadir Servicio", "Problema con identificador", "Codigo repetido, introduzca otro codigo");
-			e.printStackTrace();
-		}
+				} catch (NumberFormatException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+					ControlErrores.showError("Servicio", "Id no valido", "Id es numerico");
+				}catch (PersistenceException e1) {
+					// TODO: handle exception
+
+					if(e1.getCause() instanceof org.hibernate.exception.ConstraintViolationException){
+						ControlErrores.showWarning("Servicio", "clave", "clave repetida");
+					}else{
+						ControlErrores.showError("Servicio", "error inesperado", e1.getLocalizedMessage());
+					}
+					e1.printStackTrace();
+				}
+			}
+		});
+
+
 	}
 
 
-
-
-	//
 	private void setTextButtons(String textCreate, String textModify, String textDelete) {
 		bt_create.setText(textCreate);
 		bt_modify.setText(textModify);

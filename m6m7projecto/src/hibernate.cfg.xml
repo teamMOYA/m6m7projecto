@@ -8,8 +8,6 @@
         <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
         <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
         <property name="hibernate.connection.password">root</property>
-        <!-- direccion ip+base de datos
-        localhost/bdclinica  192.168.3.145/bdclinica -->
         <property name="hibernate.connection.url">jdbc:mysql://localhost/bdclinica</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
