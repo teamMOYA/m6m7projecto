@@ -15,7 +15,7 @@ public interface DaoUsuaris {
 	public void delUsuaris(Usuaris usuaris) throws SQLException;
 	//crud perfils
 	public void addPerfils(Perfils perfils);
-	public List<Perfils> getPerfils();
+	public List<Perfils> getPerfils() throws SQLException;
 	public Perfils getPerfilsById(int id) throws SQLException;
 	public void updatePerfils(Perfils perfils);
 	public void delPerfils(Perfils perfils);

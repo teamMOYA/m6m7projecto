@@ -11,6 +11,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			//cargamos pantalla inicial
 			AnchorPane root = (AnchorPane)FXMLLoader.load(getClass().getResource("Login.fxml"));
 			Scene scene = new Scene(root,900,600);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
@@ -18,8 +19,8 @@ public class Main extends Application {
 			primaryStage.setResizable(false);
 			primaryStage.show();
 		} catch(Exception e) {
-			System.out.println("error main");
 			e.printStackTrace();
+			ControlErrores.showError("ERROR", "Error critico", "Error al cargar el programa");
 		}
 	}
 

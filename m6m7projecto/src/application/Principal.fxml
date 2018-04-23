@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="720.0" prefWidth="900.0" stylesheets="@application.css" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.MenuController">
+  <children>
+    <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+      <menus>
+            <Menu mnemonicParsing="false" text="Visitas">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#menuNewVisit" text="Nueva Visita" />
+                  <MenuItem mnemonicParsing="false" onAction="#menuGetVisits" text="Ver visitas" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Clientes">
+              <items>
+                <MenuItem fx:id="menu_newClient" mnemonicParsing="false" onAction="#menuNewClient" text="Nuevo cliente" />
+                  <MenuItem mnemonicParsing="false" onAction="#menuGetClients" text="Ver clientes" />
+              </items>
+            </Menu>
+            <Menu fx:id="menu_User" mnemonicParsing="false" text="Usuarios">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#menuNewUser" text="Nuevo usuario" />
+                  <MenuItem mnemonicParsing="false" onAction="#menuGetUser" text="Ver usuarios" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Servicios">
+              <items>
+                <MenuItem fx:id="menu_newServ" mnemonicParsing="false" onAction="#menuNewService" text="Nuevo servicio" />
+                  <MenuItem mnemonicParsing="false" onAction="#menuGetServices" text="Ver servicios" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Opciones">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#menuGetPerfil" text="Ver perfil" />
+                  <MenuItem mnemonicParsing="false" onAction="#cargarLogin" text="Cerrar Sesion" />
+              </items>
+            </Menu>
+        <Menu mnemonicParsing="true" text="_Ajuda">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#menuAbout" text="About ..." />
+
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+      <BorderPane fx:id="main">
+
+	<top>
+		<AnchorPane style="-fx-background-color: grey;" styleClass="topregion" BorderPane.alignment="CENTER">
+			<children>
+				<ImageView fitHeight="80.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+					<image>
+						<Image url="@../img/logo.jpg" />
+					</image>
+				</ImageView>
+				<Label fx:id="lb_nom_menu" layoutX="21.0" layoutY="18.0" prefHeight="80.0" prefWidth="518.0" styleClass="title" text="TEXTO INICIO" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0">
+                     <font>
+                        <Font name="Gears of Peace" size="25.0" />
+                     </font></Label>
+			</children>
+		</AnchorPane>
+	</top>
+	<center>
+		<AnchorPane fx:id="mainVista" styleClass="centerregion" BorderPane.alignment="CENTER">
+               <children>
+               </children></AnchorPane>
+	</center>
+	</BorderPane>
+  </children>
+</VBox>

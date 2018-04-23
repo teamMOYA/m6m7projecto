@@ -25,9 +25,11 @@ public class main {
 		DaoServeis daoserv = DAOManager.getDaoServeis();
 
 		//usuario con perfil
-		Perfils perfil = new Perfils(1, "");
-		Usuaris usuario = new Usuaris("admin", perfil, "admin", "administrador", "admin", "mail@mail.com",20,"programer");
-		daoUser.addUsuaris(usuario);
+
+		//Perfils perfil = new Perfils(1, "");
+		//Usuaris usuario = new Usuaris("admin", perfil, "admin", "administrador", "admin", "mail@mail.com",20,"programer");
+		//daoUser.addUsuaris(usuario);
+
 		/*//
 		//get usuario
 		System.out.println(daoUser.getUsuarisById("admin"));
